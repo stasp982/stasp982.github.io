@@ -4,6 +4,8 @@
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
  <script>
+    const button = document.createElement('button');
+    button.innerHTML = 'Нажми';
     async function test_async() {
         var targetUrl = "some_text"
         try {
@@ -32,7 +34,8 @@
             }
         }
     }
-    test_async();
+    button.onclick = test_async;
+    document.appendChild(button);
         // navigator.clipboard.writeText("some_text").then(() => {
         //             console.error('url has been copied successfully: ', err);
         //         }).catch(err => {
