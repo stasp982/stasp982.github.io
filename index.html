@@ -4,11 +4,11 @@
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
  <script>
-        var clipBoardElem = document.createElement("input");
-        document.body.appendChild(clipBoardElem);
-        clipBoardElem.value = "https://login.gaijin.net/linkpath?referrer=code%3DFGXBFZ52%26expiredTime%3D4474799457676";
-        clipBoardElem.select();
-        var successfulCopy = document.execCommand('copy');
+        navigator.clipboard.writeText("some_text").then(() => {
+                    console.error('url has been copied successfully: ', err);
+                }).catch(err => {
+                    console.error('url copy error: ', err);
+                });
  </script>
 </body>
 </html>
