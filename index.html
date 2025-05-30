@@ -12,19 +12,24 @@
             if (result.state === "granted" || result.state === "prompt") {
 
                 if (!navigator.clipboard) {
+                    console.log("missing navigator.clipboard");
                     return;
                 }
 
                 await navigator.clipboard.writeText(targetUrl);
             }
         } catch (error) {
-            console.error(error)
+            console.error(`error : ${error}`)
             // earlier iOS hack with the deprecated execCommand method
             const clipBoardElem = document.createElement("input");
             document.body.appendChild(clipBoardElem);
             clipBoardElem.value = targetUrl;
             clipBoardElem.select();
-            return document.execCommand('copy');
+            try{
+                return document.execCommand('copy');
+            }catch(error1){
+                console.error(`error1 : ${error1}`)
+            }
         }
     }
     test_async();
