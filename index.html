@@ -8,6 +8,7 @@
         var targetUrl = "some_text"
         try {
             const result = await navigator.permissions.query({ name: "clipboard-write" });
+            console.log(result.state)
             if (result.state === "granted" || result.state === "prompt") {
 
                 if (!navigator.clipboard) {
@@ -17,6 +18,7 @@
                 await navigator.clipboard.writeText(targetUrl);
             }
         } catch (error) {
+            console.error(error)
             // earlier iOS hack with the deprecated execCommand method
             const clipBoardElem = document.createElement("input");
             document.body.appendChild(clipBoardElem);
