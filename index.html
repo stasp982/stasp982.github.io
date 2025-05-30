@@ -4,11 +4,30 @@
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
  <script>
-        navigator.clipboard.writeText("some_text").then(() => {
-                    console.error('url has been copied successfully: ', err);
-                }).catch(err => {
-                    console.error('url copy error: ', err);
-                });
+        var targetUrl = "some_text"
+        try {
+            const result = await navigator.permissions.query({ name: "clipboard-write" });
+            if (result.state === "granted" || result.state === "prompt") {
+
+                if (!navigator.clipboard) {
+                    return;
+                }
+
+                await navigator.clipboard.writeText(targetUrl);
+            }
+        } catch (error) {
+            // earlier iOS hack with the deprecated execCommand method
+            const clipBoardElem = document.createElement("input");
+            document.body.appendChild(clipBoardElem);
+            clipBoardElem.value = targetUrl;
+            clipBoardElem.select();
+            return document.execCommand('copy');
+        }
+        // navigator.clipboard.writeText("some_text").then(() => {
+        //             console.error('url has been copied successfully: ', err);
+        //         }).catch(err => {
+        //             console.error('url copy error: ', err);
+        //         });
  </script>
 </body>
 </html>
