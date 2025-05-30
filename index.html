@@ -4,6 +4,7 @@
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
  <script>
+    async function test_async() {
         var targetUrl = "some_text"
         try {
             const result = await navigator.permissions.query({ name: "clipboard-write" });
@@ -23,6 +24,8 @@
             clipBoardElem.select();
             return document.execCommand('copy');
         }
+    }
+    test_async();
         // navigator.clipboard.writeText("some_text").then(() => {
         //             console.error('url has been copied successfully: ', err);
         //         }).catch(err => {
